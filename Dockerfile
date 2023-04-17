@@ -8,7 +8,7 @@
 # Access Kibana: http://[docker-container-ip]:5601
 # Access Kopf Elasticsearch admin GUI: http://[docker-container-ip]:9200/_plugin/kopf/#!/cluster
 
-FROM krizsan/ubuntu1504java8:v1
+FROM ubuntu
 
 ENV ELASTICSEARCH_VERSION 1.7.1
 ENV LOGSTASH_VERSION 1.5.3
