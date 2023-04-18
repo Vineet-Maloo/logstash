@@ -23,36 +23,38 @@ LABEL retention="keep"
 # Setup gradle wrapper. When running any `gradle` command, a `settings.gradle` is expected (and will soon be required).
 # This section adds the gradle wrapper, `settings.gradle` and sets the permissions (setting the user to root for `chown`
 # and working directory to allow this and then reverts back to the previous working directory and user.
-COPY --chown=logstash:logstash gradlew /opt/logstash/gradlew
-COPY --chown=logstash:logstash gradle/wrapper /opt/logstash/gradle/wrapper
-COPY --chown=logstash:logstash settings.gradle /opt/logstash/settings.gradle
+
+
+#COPY --chown=logstash:logstash gradlew /opt/logstash/gradlew
+#COPY --chown=logstash:logstash gradle/wrapper /opt/logstash/gradle/wrapper
+#COPY --chown=logstash:logstash settings.gradle /opt/logstash/settings.gradle
 WORKDIR /opt/logstash
-RUN for iter in `seq 1 10`; do ./gradlew wrapper --warning-mode all && exit_code=0 && break || exit_code=$? && echo "gradlew error: retry $iter in 10s" && sleep 10; done; exit $exit_code
+#RUN for iter in `seq 1 10`; do ./gradlew wrapper --warning-mode all && exit_code=0 && break || exit_code=$? && echo "gradlew error: retry $iter in 10s" && sleep 10; done; exit $exit_code
 WORKDIR /home/logstash
 
-COPY versions.yml /opt/logstash/versions.yml
-COPY LICENSE.txt /opt/logstash/LICENSE.txt
-COPY NOTICE.TXT /opt/logstash/NOTICE.TXT
-COPY licenses /opt/logstash/licenses
-COPY CONTRIBUTORS /opt/logstash/CONTRIBUTORS
-COPY Gemfile.template Gemfile.jruby-2.6.lock.* /opt/logstash/
-COPY Rakefile /opt/logstash/Rakefile
-COPY build.gradle /opt/logstash/build.gradle
-COPY rubyUtils.gradle /opt/logstash/rubyUtils.gradle
-COPY rakelib /opt/logstash/rakelib
-COPY config /opt/logstash/config
-COPY spec /opt/logstash/spec
-COPY qa /opt/logstash/qa
-COPY lib /opt/logstash/lib
-COPY pkg /opt/logstash/pkg
-COPY buildSrc /opt/logstash/buildSrc
-COPY tools /opt/logstash/tools
-COPY logstash-core /opt/logstash/logstash-core
-COPY logstash-core-plugin-api /opt/logstash/logstash-core-plugin-api
-COPY bin /opt/logstash/bin
-COPY modules /opt/logstash/modules
-COPY x-pack /opt/logstash/x-pack
-COPY ci /opt/logstash/ci
+##COPY versions.yml /opt/logstash/versions.yml
+#COPY LICENSE.txt /opt/logstash/LICENSE.txt
+#COPY NOTICE.TXT /opt/logstash/NOTICE.TXT
+#COPY licenses /opt/logstash/licenses
+#COPY CONTRIBUTORS /opt/logstash/CONTRIBUTORS
+#COPY Gemfile.template Gemfile.jruby-2.6.lock.* /opt/logstash/
+#COPY Rakefile /opt/logstash/Rakefile
+#COPY build.gradle /opt/logstash/build.gradle
+#COPY rubyUtils.gradle /opt/logstash/rubyUtils.gradle
+#COPY rakelib /opt/logstash/rakelib
+#COPY config /opt/logstash/config
+#COPY spec /opt/logstash/spec
+#COPY qa /opt/logstash/qa
+#COPY lib /opt/logstash/lib
+#COPY pkg /opt/logstash/pkg
+#COPY buildSrc /opt/logstash/buildSrc
+#COPY tools /opt/logstash/tools
+#COPY logstash-core /opt/logstash/logstash-core
+#COPY logstash-core-plugin-api /opt/logstash/logstash-core-plugin-api
+#COPY bin /opt/logstash/bin
+#COPY modules /opt/logstash/modules
+#COPY x-pack /opt/logstash/x-pack
+#COPY ci /opt/logstash/ci
 
 USER root
 RUN rm -rf build && \
