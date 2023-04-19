@@ -8,7 +8,7 @@ RUN sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|
 
 RUN yum -y upgrade
 RUN yum -y install wget
-RUN wget https://artifacts.elastic.co/downloads/logstash/logstash-8.5.1.rpm
+RUN wget https://artifacts.elastic.co/downloads/logstash/logstash-8-5-1.rpm
 RUN yum -y install java-11-openjdk
 RUN rpm -ivh logstash-8.5.1.rpm
 RUN touch  /var/log/secure
