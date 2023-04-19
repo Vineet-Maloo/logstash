@@ -16,4 +16,4 @@ steps:
     containerRegistry: 'Azuredevops-demo'
     repository: 'logstash'
     command: 'buildAndPush'
-    Dockerfile: '**/Dockerfile'
+    Dockerfile: '**/Dockerfile 7.5.2'
