@@ -7,7 +7,7 @@ RUN yum -y upgrade
 RUN yum -y install wget
 RUN rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 COPY logstash.repo /etc/yum.repos.d/
-RUN yum -y install java-11-openjdk
+#RUN yum -y install java-11-openjdk
 RUN yum -y install logstash
 
 
