@@ -3,7 +3,7 @@ FROM centos
 RUN rpm --import https://artifacts.elastic.co/GPG-KEY-elasticsearch
 COPY logstash.repo /etc/yum.repos.d/
 RUN yum -y install java-11-openjdk
-RUN sudo yum -y install logstash
+RUN yum -y install logstash
 
 
 RUN  systemctl start logstash
