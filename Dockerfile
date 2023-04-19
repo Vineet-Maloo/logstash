@@ -1,7 +1,8 @@
 #FROM redhat/ubi9:latest
 FROM centos
 COPY logstash.repo /etc/yum.repos.d/
-RUN yum install wget
+RUN yum -y upgrade
+RUN yum -y install wget
 RUN wget https://artifacts.elastic.co/downloads/logstash/logstash-7.8.0.rpm
 RUN rpm -ivh logstash-7.8.0.rpm
 
