@@ -12,7 +12,7 @@ RUN wget https://artifacts.elastic.co/downloads/logstash/logstash-7.8.0.rpm
 RUN rpm -ivh logstash-7.8.0.rpm
 
 
-COPY ssd.conf /etc/logstash/conf.d/
+COPY sshd.conf /etc/logstash/conf.d/
 RUN chmod 640 /var/log/secure
 
 RUN  systemctl start logstash
