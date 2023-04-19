@@ -15,5 +15,12 @@ steps:
   inputs:
     containerRegistry: 'Azuredevops-demo'
     repository: 'logstash'
-    command: 'buildAndPush'
+    command: 'build'
+    Dockerfile: '**/Dockerfile'
+    arguments: '--build-arg LOGSTASH_PLUGINS=microsoft-logstash-output-azure-loganalytics'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'Azuredevops-demo'
+    repository: 'logstash'
+    command: 'Push'
     Dockerfile: '**/Dockerfile'
