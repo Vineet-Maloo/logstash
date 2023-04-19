@@ -17,6 +17,6 @@ RUN touch  /var/log/secure
 COPY sshd.conf /etc/logstash/conf.d/
 RUN chmod 640 /var/log/secure
 
-RUN  systemctl start logstash
+RUN systemctl start logstash
 RUN systemctl enable logstash
 
