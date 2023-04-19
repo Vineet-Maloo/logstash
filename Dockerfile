@@ -1,5 +1,5 @@
-FROM redhat/ubi9:latest
-
+#FROM redhat/ubi9:latest
+FROM centos
 COPY logstash.repo /etc/yum.repos.d/
 
 RUN yum -y install logstash
