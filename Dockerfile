@@ -1,4 +1,4 @@
-FROM redhat:latest
+FROM redhat/ubi9:latest
 
 COPY logstash.repo /etc/yum.repos.d/
 
