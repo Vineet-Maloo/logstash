@@ -38,6 +38,8 @@ RUN chown --recursive logstash:root config/ pipeline/
 # Ensure Logstash gets the correct locale by default.
 ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 COPY env2yaml/env2yaml /usr/local/bin/
+RUN chown 777 /usr/local/bin/env2yaml
+
 # Place the startup wrapper script.
 COPY bin/docker-entrypoint /usr/local/bin/
 RUN chmod 0755 /usr/local/bin/docker-entrypoint
