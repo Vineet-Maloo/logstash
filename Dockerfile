@@ -42,7 +42,7 @@ RUN chown 777 /usr/local/bin/env2yaml
 
 # Place the startup wrapper script.
 COPY bin/docker-entrypoint /usr/local/bin/
-RUN chmod 0755 /usr/local/bin/docker-entrypoint
+RUN chmod 777 /usr/local/bin/docker-entrypoint
 
 USER 1000
 
