@@ -44,7 +44,7 @@ RUN chmod 777 /usr/local/bin/env2yaml
 # Place the startup wrapper script.
 COPY bin/docker-entrypoint /usr/local/bin/
 RUN chmod 777 /usr/local/bin/docker-entrypoint
-
+RUN chmod 777 -R data
 USER 1000
 
 EXPOSE 9600 5044
