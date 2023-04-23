@@ -1,8 +1,10 @@
 FROM registry.access.redhat.com/ubi8/ubi:8.7-1112
 
-#RUN yum -y install locales 
-#RUN localectl set-locale LANG=en_US.UTF-8
-#RUN locale-gen 'en_US.UTF-8' 
+
+
+RUN yum -y install locales && \
+   localectl set-locale LANG=en_US.UTF-8 
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
 
 # Provide a non-root user to run the process.
 RUN groupadd --gid 1000 logstash && \
