@@ -31,6 +31,7 @@ curl -Lo - https://artifacts.elastic.co/downloads/logstash/logstash-8.5.1-linux-
 find /usr/share/logstash -type d -exec chmod g+s {} \; && \
 ln -s /usr/share/logstash /opt/logstash
 
+
 WORKDIR /usr/share/logstash
 ENV ELASTIC_CONTAINER true
 ENV PATH=/usr/share/logstash/bin:$PATH
@@ -51,5 +52,12 @@ chmod 777 /usr/local/bin/env2yaml
 
 EXPOSE 9600 5044
 
-
+RUN groupadd --gid 1000 logstash && \
+    adduser --uid 1000 --gid 1000 \
+       --home /usr/share/logstash --no-create-home \
+      logstash &&\
+chown --recursive logstash:logstash /usr/share/logstash/ && \
+    chown -R logstash:root /usr/share/logstash && \
+    chmod -R g=u /usr/share/logstash
+USER 1000
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
