@@ -1,5 +1,12 @@
 # This Dockerfile was generated from templates/Dockerfile.j2
+#FROM ubuntu:20.04
 FROM registry.access.redhat.com/ubi8/ubi:8.7-1112
+
+ENV LANG='en_US.UTF-8' LANGUAGE='en_US:en' LC_ALL='en_US.UTF-8'
+
+RUN sh -c "echo -e 'LC_ALL=en_US.UTF-8\nLANG=en_US.UTF-8' >> /etc/environment" && \
+yum install -y glibc-langpack-en
+
 RUN for iter in {1..10}; do \
 export DEBIAN_FRONTEND=noninteractive && \
 yum update -y && \
@@ -44,10 +51,11 @@ COPY pipeline/default.conf pipeline/logstash.conf
 # Ensure Logstash gets the correct locale by default.
 ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8
 COPY env2yaml/env2yaml /usr/local/bin/
-RUN chmod 777 /usr/local/bin/env2yaml
+
 # Place the startup wrapper script.
 COPY bin/docker-entrypoint /usr/local/bin/
-RUN chmod 0755 /usr/local/bin/docker-entrypoint
+RUN chmod 0755 /usr/local/bin/docker-entrypoint && \
+chmod 777 /usr/local/bin/env2yaml
 
 USER root
 
