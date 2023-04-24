@@ -55,7 +55,8 @@ COPY env2yaml/env2yaml /usr/local/bin/
 # Place the startup wrapper script.
 COPY bin/docker-entrypoint /usr/local/bin/
 RUN chmod 0755 /usr/local/bin/docker-entrypoint && \
-chmod 777 /usr/local/bin/env2yaml
+chmod 777 /usr/local/bin/env2yaml && \
+/usr/share/logstash/bin/logstash-plugin install microsoft-logstash-output-azure-loganalytics
 
 USER root
 
